@@ -8,6 +8,7 @@ import { RedTeamComponent } from './components/red-team/red-team.component';
 import { AddRedPlayerComponent } from './components/add-red-player/add-red-player.component';
 import { AddBluePlayerComponent } from './components/add-blue-player/add-blue-player.component';
 import { BlueTeamComponent } from './components/blue-team/blue-team.component';
+import { SplashComponent } from './splash/splash.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { BlueTeamComponent } from './components/blue-team/blue-team.component';
     RedTeamComponent,
     AddRedPlayerComponent,
     AddBluePlayerComponent,
-    BlueTeamComponent
+    BlueTeamComponent,
+    SplashComponent
   ],
   imports: [
     BrowserModule,
