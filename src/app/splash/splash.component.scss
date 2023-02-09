@@ -4,7 +4,6 @@
     height: 100vh;
     justify-content: center;
     align-items: center;
-    background-color: #1b2023;
     flex-direction: column;
 
     .logo {
@@ -24,8 +23,8 @@
 
         .loading-bar-inner {
             width: 50%;
-            height: 100%;
-            background-color: #9a0076;
+            height: 100%; 
+            background-color: #8F1788;
             position: absolute;
             border-radius: 5px;
             animation-duration: 2s;
