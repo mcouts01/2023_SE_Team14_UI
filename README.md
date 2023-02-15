@@ -1,4 +1,3 @@
-# Backend for Software Engineering - Team 14
 ## Setup Instructions
 To run this application:
 1. Install the following:
