@@ -1,1 +1,82 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  color: white;
+}
+
+h1 {
+	color: white;
+	float: left;
+}
+
+.showInputFieldRed {
+  margin-top: 10px;
+}
+
+.showInputFieldBlue {
+  margin-top: 10px;
+}
+
+.idBox {
+  color: white;
+}
+
+.nameBox {
+  color: white;
+}
+
+.team-container {
+	width: 50%;
+	padding: 40px;
+	margin: auto;
+	border: 3px solid grey;
+  border-radius: 5px;
+	float: left;
+}
+
+.big-container {
+	width: 80%;
+	height: 500px;
+	padding: 50px;
+	margin: auto;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 30px auto;
+  overflow: auto;
+  min-height: 300px;
+  padding: 30px;
+}
+.btn {
+  background: blue;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 15px;
+  font-family: inherit;
+  float: right;
+}
+.btn:focus {
+  outline: none;
+}
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+}
