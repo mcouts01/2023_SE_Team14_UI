@@ -1,0 +1,9 @@
+<div class="content-container">
+    <div class="team-container">
+        <div class="team" *ngFor="let team of teamList">
+            <div class="team-players">
+                <app-team [team]="team"></app-team>
+            </div>
+        </div>
+    </div>
+</div>

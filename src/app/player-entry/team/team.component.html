@@ -1,0 +1,11 @@
+<div class="content-container">
+    <div class="team-header">
+        <h1>{{team.teamColor}} team</h1>
+        <button class="btn" (click)="addPlayer()">Add player</button>
+    </div>
+    <div class="player-container">
+        <div *ngFor="let player of team.playerList">
+            <app-player></app-player>
+        </div>
+    </div>
+</div>
