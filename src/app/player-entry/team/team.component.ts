@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PlayerEntryComponent } from '../player-entry.component';
 import { Player, PlayerEntryStore, Team } from '../player-entry.store';
 
@@ -11,11 +12,15 @@ export class TeamComponent implements OnInit {
 
   @Input() team: Team = {teamColor: '', playerList: []};
 
+  playerForm: FormGroup = new FormGroup({
+    'codeName': new FormControl('', Validators.compose([Validators.required, Validators.maxLength(30)])),
+  });
+
   constructor(private readonly store: PlayerEntryStore) { }
 
   ngOnInit(): void {}
 
   addPlayer() {
-    this.team.playerList.push({id: 0, codeName: '', team: ''});
+    
   }
 }

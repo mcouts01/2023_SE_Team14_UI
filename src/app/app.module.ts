@@ -11,7 +11,8 @@ import { BlueTeamComponent } from './team/blue-team/blue-team.component';
 import { SplashComponent } from './splash/splash.component';
 import { PlayerEntryComponent } from './player-entry/player-entry.component';
 import { TeamComponent } from './player-entry/team/team.component';
-import { PlayerComponent } from './player-entry/team/player/player.component';
+import { PlayerCardComponent } from './player-entry/team/player-card/player-card.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,11 +25,12 @@ import { PlayerComponent } from './player-entry/team/player/player.component';
     SplashComponent,
     PlayerEntryComponent,
     TeamComponent,
-    PlayerComponent
+    PlayerCardComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
