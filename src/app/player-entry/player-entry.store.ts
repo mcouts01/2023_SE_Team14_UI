@@ -7,6 +7,13 @@ export interface Player {
   team: string;
 }
 
+export interface PlayerEntity {
+    id: number;
+    codeName: string;
+    firstName: string;
+    lastName: string;
+}
+
 export interface Team {
   teamColor: string;
   playerList: Player[];

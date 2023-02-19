@@ -13,6 +13,7 @@ import { PlayerEntryComponent } from './player-entry/player-entry.component';
 import { TeamComponent } from './player-entry/team/team.component';
 import { PlayerCardComponent } from './player-entry/team/player-card/player-card.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
