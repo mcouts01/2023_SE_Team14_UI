@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = '2023_SE_Team14_UI';
+  title = 'player-entry-screen';
 }

@@ -1,0 +1,12 @@
+.content-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    .team-container {
+        width: 60%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 3rem;
+    }
+}
