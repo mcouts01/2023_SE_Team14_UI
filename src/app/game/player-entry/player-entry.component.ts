@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { PlayerEntryStore, Team } from './player-entry.store';
+import { GameStore, Team } from '../game.store';
 
 @Component({
   selector: 'app-player-entry',
   templateUrl: './player-entry.component.html',
   styleUrls: ['./player-entry.component.scss'],
-  providers: [PlayerEntryStore]
+  providers: [GameStore]
 })
 export class PlayerEntryComponent implements OnInit {
 
   teamList: Team[] = [];
 
-  constructor(private readonly store: PlayerEntryStore) { }
+  constructor(private readonly store: GameStore) { }
 
   ngOnInit(): void {
     this.store.teamList$.subscribe(teamList => this.teamList = teamList);
