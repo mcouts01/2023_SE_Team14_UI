@@ -24,7 +24,7 @@ export interface TeamState {
 }
 
 @Injectable()
-export class PlayerEntryStore extends ComponentStore<TeamState> {
+export class GameStore extends ComponentStore<TeamState> {
 
     teamList$ = this.select(state => state.teamList);
 

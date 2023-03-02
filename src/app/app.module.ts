@@ -9,9 +9,9 @@ import { AddRedPlayerComponent } from './team/add-red-player/add-red-player.comp
 import { AddBluePlayerComponent } from './team/add-blue-player/add-blue-player.component';
 import { BlueTeamComponent } from './team/blue-team/blue-team.component';
 import { SplashComponent } from './splash/splash.component';
-import { PlayerEntryComponent } from './player-entry/player-entry.component';
-import { TeamComponent } from './player-entry/team/team.component';
-import { PlayerCardComponent } from './player-entry/team/player-card/player-card.component';
+import { PlayerEntryComponent } from './game/player-entry/player-entry.component';
+import { TeamComponent } from './game/player-entry/team/team.component';
+import { PlayerCardComponent } from './game/player-entry/team/player-card/player-card.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
