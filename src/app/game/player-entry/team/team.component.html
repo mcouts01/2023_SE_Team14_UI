@@ -1,0 +1,39 @@
+<div class="content-container">
+    <div class="team-header">
+        <h1>{{team.teamColor}} team</h1>
+        <button class="btn" (click)="clearTeam()">Clear team</button>
+    </div>
+    <div class="player-container">
+        <div *ngFor="let player of team.playerList">
+            <app-player-card [player]="player"></app-player-card>
+        </div>
+    </div>
+    <div class="player-addition-container">
+        <div class="group">
+            <input type="checkbox" [formControl]="existingPlayer">
+            <label>Existing player</label>
+        </div>
+        <div *ngIf="existingPlayer.value; else newPlayer">
+            <form class="form" [formGroup]="existingPlayerForm">
+                <div class="input-group">
+                    <label>Id: *</label>
+                    <input type="text" formControlName="id">
+                </div>
+            </form>
+            <button class="btn" (click)="addExistingPlayer()">Add player</button>
+        </div>
+        <ng-template #newPlayer>
+            <form class="form" [formGroup]="newPlayerForm">
+                <div class="input-group">
+                    <label>Id: *</label>
+                    <input type="text" formControlName="id">
+                </div>
+                <div class="input-group">
+                    <label>Code name: *</label>
+                    <input type="text" formControlName="codeName">
+                </div>
+            </form>
+            <button class="btn" (click)="createNewPlayer()">Add player</button>
+        </ng-template>
+    </div>
+</div>
