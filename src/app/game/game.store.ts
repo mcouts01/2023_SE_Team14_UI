@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { ComponentStore } from '@ngrx/component-store';
+import { ComponentStore, tapResponse } from '@ngrx/component-store';
+import { Observable, switchMap } from 'rxjs';
+import { PlayerService } from './player-entry/team/player.service';
 
 export interface Player {
   id: number;
@@ -31,11 +33,6 @@ export class GameStore extends ComponentStore<TeamState> {
     constructor() {
         super({ teamList: [] });
     }
-
-    public addPlayer = this.updater((state, team: Team) => ({
-        ...state,
-        teamList: [...state.teamList, team]
-    }));
 
     public addTeam = this.updater((state, value: Team) => ({
         ...state,
