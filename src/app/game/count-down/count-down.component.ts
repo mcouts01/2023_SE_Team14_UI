@@ -1,24 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { timer } from 'rxjs';
 @Component({
   selector: 'app-count-down',
   templateUrl: './count-down.component.html',
   styleUrls: ['./count-down.component.scss']
 })
 export class CountDownComponent implements OnInit {
-  timerType = "Game Set-up";
-  timeLeft: number;
-  interval: any;
-  minutes: any;
-  seconds: any;
+  @Input()  timeLeft!: number;
 
-  constructor() {
-    this.timeLeft = 30;
-    this.minutes = 0;
-    this.seconds = "0";
-   }
+  timerType = "Game Set-up";
+  interval: any;
+  minutes: number = 0;
+  seconds: string = "0";
+
+  constructor() {}
 
   ngOnInit(): void {
-    this.interval = setInterval(() => {this.preTimer(); this.timeLeft -= 1;}, 1000);
+    this.interval = setInterval(() => {
+      this.preTimer(); 
+      this.timeLeft -= 1;
+    }, 1000);
   }
 
   preTimer() {
@@ -40,8 +41,8 @@ export class CountDownComponent implements OnInit {
 
   setClock() {
     this.minutes = Math.floor(this.timeLeft / 60);
-    this.seconds = Math.floor(this.timeLeft % 60);
-    if(this.seconds < 10)
+    this.seconds = Math.floor(this.timeLeft % 60).toString();
+    if(Number.parseInt(this.seconds) < 10)
       this.seconds = ("0"+this.seconds);
   }
 }

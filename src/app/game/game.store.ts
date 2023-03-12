@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ComponentStore, tapResponse } from '@ngrx/component-store';
-import { Observable, switchMap } from 'rxjs';
-import { PlayerService } from './player-entry/team/player.service';
+import { ComponentStore } from '@ngrx/component-store';
 
 export interface Player {
   id: number;
