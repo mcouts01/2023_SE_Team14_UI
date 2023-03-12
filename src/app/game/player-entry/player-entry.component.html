@@ -1,4 +1,8 @@
 <div class="content-container">
+    <div class="header">
+        <h1>Player Entry</h1>
+        <button (click)="startGame()" class="btn btn-blue">Start Game</button>
+    </div>
     <div class="team-container">
         <div class="team" *ngFor="let team of teamList">
             <div class="team-players">
