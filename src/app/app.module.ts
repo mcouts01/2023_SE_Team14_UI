@@ -14,6 +14,7 @@ import { TeamComponent } from './game/player-entry/team/team.component';
 import { PlayerCardComponent } from './game/player-entry/team/player-card/player-card.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { CountDownComponent } from './game/count-down/count-down.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { HttpClientModule } from '@angular/common/http';
     SplashComponent,
     PlayerEntryComponent,
     TeamComponent,
-    PlayerCardComponent
+    PlayerCardComponent,
+    CountDownComponent
   ],
   imports: [
     BrowserModule,
