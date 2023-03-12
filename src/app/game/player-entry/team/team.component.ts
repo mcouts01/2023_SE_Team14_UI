@@ -36,7 +36,7 @@ export class TeamComponent implements OnInit {
 
   addExistingPlayer() {
     this.service.getExistingPlayer(this.existingPlayerForm.value.id).subscribe(player => {
-      if(this.checkForPlayer(player)) {
+      if(!this.checkForPlayer(player)) {
         this.team.playerList.push(<Player>({
           team: this.team.teamColor,
           id: player.id,
@@ -51,7 +51,7 @@ export class TeamComponent implements OnInit {
     let found = false;
     this.store.teamList$.subscribe((teamList) => {
       teamList.forEach(team => {
-        if(this.team.playerList.some(p => p.id === player.id))
+        if(team.playerList.some(p => p.id === player.id))
           found = true;
       })
     });
