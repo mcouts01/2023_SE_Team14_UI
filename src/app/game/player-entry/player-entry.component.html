@@ -1,5 +1,5 @@
 <div class="content-container">
-    <app-button (btnClick)="clickHandler()" text="Start Game" [isDisabled]="false"></app-button>
+    <button (click)="startGame()" text="Start Game"></button>
     <div class="team-container">
         <div class="team" *ngFor="let team of teamList">
             <div class="team-players">
