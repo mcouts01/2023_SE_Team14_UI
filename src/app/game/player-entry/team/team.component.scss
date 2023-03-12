@@ -12,6 +12,12 @@
         width: 100%;
     }
 
+    .btn {
+        margin: 1rem 0 0 0;
+        padding: 0;
+        width: 100%;
+        height: 2rem;
+    }
     .player-addition-container {
         background: transparent linear-gradient(102deg, #000000 30%, #1d1d1d 100%) 0% 0% no-repeat padding-box;
         width: 100%;
@@ -54,7 +60,6 @@
                 }
             }
         }
-
 
         .btn {
             margin: 1rem 0 0 0;

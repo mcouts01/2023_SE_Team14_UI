@@ -18,7 +18,7 @@ export class PlayerEntryComponent implements OnInit {
     this.store.addTeam({teamColor: 'Red', playerList: []});
     this.store.addTeam({teamColor: 'Blue', playerList: []});
   }
-
+  
   startGame() {
     // start the game here...
   }
