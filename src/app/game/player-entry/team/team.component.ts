@@ -42,6 +42,7 @@ export class TeamComponent implements OnInit {
           id: player.id,
           codeName: player.codeName
         }));
+        this.store.updateTeam(this.team);
       }
       this.existingPlayerForm.reset();
     });
@@ -65,7 +66,8 @@ export class TeamComponent implements OnInit {
           team: this.team.teamColor,
           id: player.id,
           codeName: player.codeName
-        }))
+        }));
+        this.store.updateTeam(this.team);
       },
       error: (error) => {
         console.log(error);

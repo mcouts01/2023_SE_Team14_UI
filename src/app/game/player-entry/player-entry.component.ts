@@ -1,25 +1,32 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { GameStore, Team } from '../game.store';
 
 @Component({
   selector: 'app-player-entry',
   templateUrl: './player-entry.component.html',
-  styleUrls: ['./player-entry.component.scss'],
-  providers: [GameStore]
+  styleUrls: ['./player-entry.component.scss']
 })
 export class PlayerEntryComponent implements OnInit {
 
-  teamList: Team[] = [];
+  redTeam!: Team;
+  blueTeam!: Team;
 
-  constructor(private readonly store: GameStore) { }
+  constructor(
+    private readonly store: GameStore,
+    private readonly router: Router
+  ) { }
 
   ngOnInit(): void {
-    this.store.teamList$.subscribe(teamList => this.teamList = teamList);
-    this.store.addTeam({teamColor: 'Red', playerList: []});
-    this.store.addTeam({teamColor: 'Blue', playerList: []});
+
+    this.store.teamList$.subscribe(teamList => {
+      this.redTeam = teamList.find(team => team.teamColor === 'Red')!;
+      this.blueTeam = teamList.find(team => team.teamColor === 'Blue')!;
+      console.log(teamList);
+    });
   }
   
   startGame() {
-    // start the game here...
+    this.router.navigate(['/game-action']);
   }
 }

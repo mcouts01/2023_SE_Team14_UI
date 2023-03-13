@@ -23,17 +23,28 @@ export interface TeamState {
   teamList: Team[];
 }
 
-@Injectable()
+@Injectable(
+    {providedIn: 'root'}
+)
 export class GameStore extends ComponentStore<TeamState> {
 
     teamList$ = this.select(state => state.teamList);
 
     constructor() {
-        super({ teamList: [] });
+        super({ teamList: [
+            {teamColor: 'Red', playerList: []},
+            {teamColor: 'Blue', playerList: []}
+          ]
+        });
     }
 
     public addTeam = this.updater((state, value: Team) => ({
         ...state,
         teamList: [...state.teamList, value]
+    }));
+
+    public updateTeam = this.updater((state, value: Team) => ({
+        ...state,
+        teamList: [...state.teamList.filter(team => team.teamColor !== value.teamColor), value]
     }));
 }

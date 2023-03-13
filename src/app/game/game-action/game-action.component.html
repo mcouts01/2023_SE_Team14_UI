@@ -1,0 +1,16 @@
+<div class="content-container">
+    <div class="header">
+        <!-- <button class="btn">Pause</button> -->
+        <button class="btn" (click)="endGameAction()">End Game</button>
+    </div>
+    <div class="grid-container">
+        <app-team-score-panel [team]="redTeam"></app-team-score-panel>
+        <div class="action-container">
+            <app-count-down *ngIf="setup" [timeLeft]="30" title="Game Setup" (done)="startGameAction()"></app-count-down>
+            <app-count-down *ngIf="action" [timeLeft]="300" title="Game in progress..." (done)="endGameAction()"></app-count-down>
+            <h1 *ngIf="ended">Game has ended</h1>
+            <app-score-feed></app-score-feed>
+        </div>
+        <app-team-score-panel [team]="blueTeam"></app-team-score-panel>
+    </div>
+</div>

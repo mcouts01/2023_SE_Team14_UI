@@ -3,11 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './team/header/header.component';
-import { RedTeamComponent } from './team/red-team/red-team.component';
-import { AddRedPlayerComponent } from './team/add-red-player/add-red-player.component';
-import { AddBluePlayerComponent } from './team/add-blue-player/add-blue-player.component';
-import { BlueTeamComponent } from './team/blue-team/blue-team.component';
 import { SplashComponent } from './splash/splash.component';
 import { PlayerEntryComponent } from './game/player-entry/player-entry.component';
 import { TeamComponent } from './game/player-entry/team/team.component';
@@ -15,20 +10,23 @@ import { PlayerCardComponent } from './game/player-entry/team/player-card/player
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CountDownComponent } from './game/count-down/count-down.component';
+import { GameActionComponent } from './game/game-action/game-action.component';
+import { TeamScorePanelComponent } from './game/game-action/team-score-panel/team-score-panel.component';
+import { ScoreFeedComponent } from './game/game-action/score-feed/score-feed.component';
+import { ScoreCardComponent } from './game/game-action/score-card/score-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    RedTeamComponent,
-    AddRedPlayerComponent,
-    AddBluePlayerComponent,
-    BlueTeamComponent,
     SplashComponent,
     PlayerEntryComponent,
     TeamComponent,
     PlayerCardComponent,
-    CountDownComponent
+    CountDownComponent,
+    GameActionComponent,
+    TeamScorePanelComponent,
+    ScoreFeedComponent,
+    ScoreCardComponent
   ],
   imports: [
     BrowserModule,
