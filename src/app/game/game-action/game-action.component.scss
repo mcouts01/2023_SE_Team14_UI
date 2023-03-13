@@ -1,0 +1,37 @@
+.content-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .header {
+        width: 100%;
+        padding: 0.5rem 0;
+        display: flex;
+        justify-content: center;
+        background: #1F1F1F 0% 0% no-repeat padding-box;
+        box-shadow: 0px 3px 6px #00000064;
+
+        .btn {
+            margin: 0 3rem;
+            background-color: transparent;
+            border: 1px solid #ffffff;
+
+            &:hover {
+                background-color: #323232;
+            }
+        }
+    }
+
+    .grid-container {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 25% 50% 25%;
+
+        .action-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+}

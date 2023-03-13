@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { timer } from 'rxjs';
 @Component({
   selector: 'app-count-down',
@@ -7,8 +7,9 @@ import { timer } from 'rxjs';
 })
 export class CountDownComponent implements OnInit {
   @Input()  timeLeft!: number;
+  @Input() title!: string;
+  @Output() done = new EventEmitter<void>();
 
-  timerType = "Game Set-up";
   interval: any;
   minutes: number = 0;
   seconds: string = "0";
@@ -27,13 +28,11 @@ export class CountDownComponent implements OnInit {
     if(this.timeLeft == 0)
     {
       clearInterval(this.interval);
-      this.timeLeft = 301;
-      this.interval = setInterval(() => {this.Timer(); this.timeLeft -= 1;}, 1000);
+      this.done.emit();
     }
   }
 
   Timer() {
-    this.timerType = "Time Remaining";
     this.setClock();
     if(this.timeLeft == 0)
       clearInterval(this.interval);

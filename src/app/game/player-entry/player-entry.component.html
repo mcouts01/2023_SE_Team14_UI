@@ -4,10 +4,7 @@
         <button (click)="startGame()" class="btn btn-blue">Start Game</button>
     </div>
     <div class="team-container">
-        <div class="team" *ngFor="let team of teamList">
-            <div class="team-players">
-                <app-team [team]="team"></app-team>
-            </div>
-        </div>
+        <app-team [team]="redTeam"></app-team>
+        <app-team [team]="blueTeam"></app-team>
     </div>
 </div>

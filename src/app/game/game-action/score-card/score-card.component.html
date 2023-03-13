@@ -1,0 +1,7 @@
+<div class="content-container">
+    <div class="player-info">
+        <p class="codename" [style.color]="teamColors[player.team]">{{player.codeName}}</p>
+        <p class="id">{{player.id}}</p>
+    </div>
+    <p class="score" *ngIf="showScore" [style.color]="teamColors[player.team]">SCORE</p>
+</div>
