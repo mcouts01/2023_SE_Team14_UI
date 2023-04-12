@@ -28,4 +28,8 @@ export class PlayerEntryComponent implements OnInit {
   startGame() {
     this.router.navigate(['/game-action']);
   }
+
+  getEnoughPlayers(): boolean {
+    return this.redTeam.playerList.length > 0 && this.blueTeam.playerList.length > 0;
+  }
 }
