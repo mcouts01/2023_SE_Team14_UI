@@ -22,7 +22,6 @@ export class PlayerEntryComponent implements OnInit {
     this.store.teamList$.subscribe(teamList => {
       this.redTeam = teamList.find(team => team.teamColor === 'Red')!;
       this.blueTeam = teamList.find(team => team.teamColor === 'Blue')!;
-      console.log(teamList);
     });
   }
   

@@ -7,7 +7,7 @@ import { Player } from '../../../game.store';
   styleUrls: ['./player-card.component.scss']
 })
 export class PlayerCardComponent implements OnInit {
-  @Input() player: Player = {team: 'Red', id: 0, codeName: ''};
+  @Input() player: Player = {team: 'Red', id: 0, codeName: '', score: 0};
 
   constructor() { }
 

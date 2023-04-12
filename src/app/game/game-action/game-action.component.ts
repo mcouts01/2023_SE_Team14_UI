@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GameService } from '../game.service';
 import { GameStore, Team } from '../game.store';
 
 @Component({
@@ -15,7 +16,7 @@ export class GameActionComponent implements OnInit {
   redTeam!: Team;
   blueTeam!: Team;
 
-  constructor(private readonly store: GameStore) { }
+  constructor(private readonly store: GameStore, private readonly gameService: GameService) { }
 
   ngOnInit(): void {
     this.store.teamList$.subscribe((teamList) => {
@@ -23,6 +24,8 @@ export class GameActionComponent implements OnInit {
       this.blueTeam = teamList.find(team => team.teamColor === 'Blue')!;
       console.log(teamList);
     });
+
+    this.gameService.openSseChannel();
   }
 
   startGameAction() {

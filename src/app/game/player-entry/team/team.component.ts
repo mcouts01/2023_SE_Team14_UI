@@ -10,7 +10,7 @@ import { PlayerService } from './player.service';
 })
 export class TeamComponent implements OnInit {
 
-  @Input() team: Team = {teamColor: '', playerList: []};
+  @Input() team: Team = {teamColor: '', playerList: [], score: 0};
 
   existingPlayer: FormControl = new FormControl(false, Validators.compose([Validators.required]));
 
@@ -39,6 +39,7 @@ export class TeamComponent implements OnInit {
       if(!this.checkForPlayer(player)) {
         this.team.playerList.push(<Player>({
           team: this.team.teamColor,
+          score: 0,
           id: player.id,
           codeName: player.codeName
         }));
@@ -64,6 +65,7 @@ export class TeamComponent implements OnInit {
       next: (player) => {
         this.team.playerList.push(<Player>({
           team: this.team.teamColor,
+          score: 0,
           id: player.id,
           codeName: player.codeName
         }));

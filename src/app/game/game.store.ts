@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
-import { ComponentStore } from '@ngrx/component-store';
+import { ComponentStore, tapResponse } from '@ngrx/component-store';
+import { Observable, combineLatest, combineLatestWith, switchMap, tap } from 'rxjs';
+import { PlayerService } from './player-entry/team/player.service';
 
 export interface Player {
   id: number;
   codeName: string;
   team: string;
+  score: number;
 }
 
 export interface PlayerEntity {
@@ -17,24 +20,42 @@ export interface PlayerEntity {
 export interface Team {
   teamColor: string;
   playerList: Player[];
+  score: number;
 }
 
-export interface TeamState {
+export interface Score {
+  hitId: number;
+  hitterId: number;
+}
+
+export interface ScoreDisplay {
+  hit: Player;
+  hitter: Player;
+}
+
+export interface GameState {
   teamList: Team[];
+  scoreList: ScoreDisplay[];
 }
 
 @Injectable(
     {providedIn: 'root'}
 )
-export class GameStore extends ComponentStore<TeamState> {
+export class GameStore extends ComponentStore<GameState> {
+
+    SCORE_INCREMENT = 10;
 
     teamList$ = this.select(state => state.teamList);
 
+    scoreList$ = this.select(state => state.scoreList);
+
     constructor() {
-        super({ teamList: [
-            {teamColor: 'Red', playerList: []},
-            {teamColor: 'Blue', playerList: []}
-          ]
+        super({ 
+          teamList: [
+            {teamColor: 'Red', playerList: [], score: 0},
+            {teamColor: 'Blue', playerList: [], score: 0}
+          ],
+          scoreList: []
         });
     }
 
@@ -46,5 +67,40 @@ export class GameStore extends ComponentStore<TeamState> {
     public updateTeam = this.updater((state, value: Team) => ({
         ...state,
         teamList: [...state.teamList.filter(team => team.teamColor !== value.teamColor), value]
+    }));
+
+    public onScore = this.effect((source: Observable<Score>) => source.pipe(
+      combineLatestWith(this.teamList$),
+      tapResponse(([score, teamList]) => {
+        let playerList: Player[] = [];
+        teamList.forEach((team) => {
+          playerList = playerList.concat(team.playerList);
+        });
+
+        let hit: Player | null = null;
+        let hitter: Player | null = null;
+
+        playerList.forEach((player) => {
+          if(player.id === score.hitterId) {
+            hitter = player;
+            player.score += this.SCORE_INCREMENT;
+          } else if(player.id === score.hitId) {
+            hit = player;
+          }
+        });
+
+        if(hit !== null && hitter !== null) {
+          this.addScore({
+            hit: hit,
+            hitter: hitter
+          });
+        }
+        
+      }, () => {})
+    ));
+
+    public addScore = this.updater((state, value: ScoreDisplay) => ({
+      ...state,
+      scoreList: [...state.scoreList, value]
     }));
 }
