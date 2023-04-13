@@ -59,6 +59,14 @@ export class GameStore extends ComponentStore<GameState> {
         });
     }
 
+    public resetGame = this.updater((state) => ({
+      teamList: [
+        {teamColor: 'Red', playerList: [], score: 0},
+        {teamColor: 'Blue', playerList: [], score: 0}
+      ],
+      scoreList: []
+    }));
+
     public addTeam = this.updater((state, value: Team) => ({
         ...state,
         teamList: [...state.teamList, value]
