@@ -1,6 +1,6 @@
 <div class="content-container">
     <div class="header">
-        <h2>{{team.teamColor}} team</h2>
+        <h2 [style.color]="team.teamColor">{{team.teamColor}} team</h2>
         <h4>Score</h4>
     </div>
     <div *ngFor="let player of team.playerList" class="player-card">
