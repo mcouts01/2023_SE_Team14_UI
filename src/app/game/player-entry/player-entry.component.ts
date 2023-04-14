@@ -22,11 +22,14 @@ export class PlayerEntryComponent implements OnInit {
     this.store.teamList$.subscribe(teamList => {
       this.redTeam = teamList.find(team => team.teamColor === 'Red')!;
       this.blueTeam = teamList.find(team => team.teamColor === 'Blue')!;
-      console.log(teamList);
     });
   }
   
   startGame() {
     this.router.navigate(['/game-action']);
+  }
+
+  getEnoughPlayers(): boolean {
+    return this.redTeam.playerList.length > 0 && this.blueTeam.playerList.length > 0;
   }
 }

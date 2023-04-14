@@ -1,3 +1,18 @@
 <div class="content-container">
-    <h3>Score feed to be developed</h3>
+    <div *ngFor="let score of scoreList$ | async">
+        <div class="score-card">
+            <div class="player-info">
+                <h2 [style]="{'color': teamColors[score.hitter.team]}" class="id">{{score.hitter.codeName}}</h2>
+                <p class="understate">{{score.hitter.id}}</p>
+            </div>
+            <div class="score-info">
+                <h3>hit</h3>
+                <h2 [style]="{'color': teamColors[score.hitter.team]}">+10</h2>
+            </div>
+            <div class="player-info">
+                <h2 [style]="{'color': teamColors[score.hit.team]}" class="id">{{score.hit.codeName}}</h2>
+                <p class="understate">{{score.hit.id}}</p>
+            </div>
+        </div>
+    </div>
 </div>

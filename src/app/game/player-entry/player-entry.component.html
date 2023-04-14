@@ -1,7 +1,7 @@
 <div class="content-container">
     <div class="header">
         <h1>Player Entry</h1>
-        <button (click)="startGame()" class="btn btn-blue">Start Game</button>
+        <button [disabled]="!getEnoughPlayers()" (click)="startGame()" class="btn btn-blue">Start Game</button>
     </div>
     <div class="team-container">
         <app-team [team]="redTeam"></app-team>
