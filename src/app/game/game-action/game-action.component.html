@@ -1,6 +1,9 @@
 <div class="content-container">
     <div class="header">
-        <button class="btn" (click)="endGameAction()">End Game</button>
+        <button class="btn" *ngIf="!ended; else elseBlock" (click)="endGameAction()">End Game</button>
+        <ng-template #elseBlock>
+            <button class="btn" (click)="newGameAction()">New Game</button>
+        </ng-template>
     </div>
     <div class="grid-container">
         <app-team-score-panel [team]="redTeam"></app-team-score-panel>

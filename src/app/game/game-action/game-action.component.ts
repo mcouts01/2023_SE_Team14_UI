@@ -13,6 +13,9 @@ export class GameActionComponent implements OnInit {
   setup: boolean = true;
   action: boolean = false;
   ended: boolean = false;
+  redWinOutcome: boolean = false;
+  blueWinOutcome: boolean = false;
+  tieOutcome: boolean = false;
 
   redTeam!: Team;
   blueTeam!: Team;
@@ -36,6 +39,7 @@ export class GameActionComponent implements OnInit {
     this.setup = false;
     this.action = true;
     this.ended = false;
+    this.store.addScoreUpdate(true);
     this.musicPlay();
   }
 
@@ -43,8 +47,17 @@ export class GameActionComponent implements OnInit {
     this.setup = false;
     this.action = false;
     this.ended = true;
+    this.store.addScoreUpdate(false);
     this.musicStop();
+    if(this.redTeam.score > this.blueTeam.score)
+      this.redWinOutcome = true;
+    else if(this.redTeam.score < this.blueTeam.score)
+      this.blueWinOutcome = true;
+    else
+      this.tieOutcome = true;
+  }
 
+  newGameAction() {
     this.store.resetGame();
     this.router.navigateByUrl('/player-entry');
   }
