@@ -11,5 +11,10 @@
         display: flex;
         justify-content: space-between;
         align-items: flex-end;
+
+        .crown {
+            height: 2rem;
+            width: 2rem;
+        }
     }
 }

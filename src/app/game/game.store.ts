@@ -21,6 +21,7 @@ export interface Team {
   teamColor: string;
   playerList: Player[];
   score: number;
+  leader: boolean;
 }
 
 export interface Score {
@@ -55,8 +56,8 @@ export class GameStore extends ComponentStore<GameState> {
     constructor() {
         super({ 
           teamList: [
-            {teamColor: 'Red', playerList: [], score: 0},
-            {teamColor: 'Blue', playerList: [], score: 0}
+            {teamColor: 'Red', playerList: [], score: 0, leader: false},
+            {teamColor: 'Blue', playerList: [], score: 0, leader: false}
           ],
           scoreList: [],
           scoreUpdate: false
@@ -65,8 +66,8 @@ export class GameStore extends ComponentStore<GameState> {
 
     public resetGame = this.updater((state) => ({
       teamList: [
-        {teamColor: 'Red', playerList: [], score: 0},
-        {teamColor: 'Blue', playerList: [], score: 0}
+        {teamColor: 'Red', playerList: [], score: 0, leader: false},
+        {teamColor: 'Blue', playerList: [], score: 0, leader: false}
       ],
       scoreList: [],
       scoreUpdate: false
@@ -102,6 +103,11 @@ export class GameStore extends ComponentStore<GameState> {
             if(player.id === score.hitterId) {
               hitter = player;
               player.score += this.SCORE_INCREMENT;
+              teamList[player.team === 'Red' ? 0 : 1].score += this.SCORE_INCREMENT;
+              if(teamList[player.team === 'Red' ? 0 : 1].score > teamList[player.team === 'Red' ? 1 : 0].score) {
+                teamList[player.team === 'Red' ? 0 : 1].leader = true;
+                teamList[player.team === 'Red' ? 1 : 0].leader = false;
+              }
             } else if(player.id === score.hitId) {
               hit = player;
             }

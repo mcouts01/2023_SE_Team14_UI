@@ -10,7 +10,7 @@ import { PlayerService } from './player.service';
 })
 export class TeamComponent implements OnInit {
 
-  @Input() team: Team = {teamColor: '', playerList: [], score: 0};
+  @Input() team: Team = {teamColor: '', playerList: [], score: 0, leader: false};
 
   existingPlayer: FormControl = new FormControl(false, Validators.compose([Validators.required]));
 
