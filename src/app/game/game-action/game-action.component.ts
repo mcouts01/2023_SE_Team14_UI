@@ -64,7 +64,7 @@ export class GameActionComponent implements OnInit {
         this.store.resetGame();
       });
     } else if (this.blueTeam.score > this.redTeam.score) {
-      const dialogRef = this.dialog.open(ResultsDialogComponent, {data: {winner: this.redTeam, loser: this.blueTeam, draw: false}});
+      const dialogRef = this.dialog.open(ResultsDialogComponent, {data: {winner: this.blueTeam, loser: this.redTeam, draw: false}});
 
       dialogRef.afterClosed().subscribe(() => {
         this.router.navigate(['/player-entry']);

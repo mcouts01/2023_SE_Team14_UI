@@ -107,6 +107,12 @@ export class GameStore extends ComponentStore<GameState> {
               if(teamList[player.team === 'Red' ? 0 : 1].score > teamList[player.team === 'Red' ? 1 : 0].score) {
                 teamList[player.team === 'Red' ? 0 : 1].leader = true;
                 teamList[player.team === 'Red' ? 1 : 0].leader = false;
+              } else if (teamList[player.team === 'Blue' ? 0 : 1].score > teamList[player.team === 'Blue' ? 1 : 0].score) {
+                teamList[player.team === 'Blue' ? 0 : 1].leader = true;
+                teamList[player.team === 'Blue' ? 1 : 0].leader = false;
+              } else {
+                teamList[player.team === 'Red' ? 0 : 1].leader = false;
+                teamList[player.team === 'Red' ? 1 : 0].leader = false;
               }
             } else if(player.id === score.hitId) {
               hit = player;

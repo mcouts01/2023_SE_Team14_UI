@@ -1,8 +1,8 @@
 <div class="content-container">
     <div class="header">
         <img class="crown" src="../../../../assets/img/crown.svg" alt="crown" *ngIf="team.leader">
-        <h2>{{team.teamColor}} team</h2>
-        <h3>{{team.score}}</h3>
+        <h1>{{team.teamColor}} team</h1>
+        <h2>{{team.score}}</h2>
     </div>
     <div *ngFor="let player of team.playerList" class="player-card">
         <app-score-card [player]="player"></app-score-card>
