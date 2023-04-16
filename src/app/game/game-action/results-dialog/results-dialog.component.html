@@ -1,0 +1,23 @@
+<div *ngIf="!data.draw; else draw">
+    <h2>{{ data.winner.teamColor }} won!</h2>
+    <div mat-dialog-content>
+        <h3>Final Score:</h3>
+        <div>
+            <h4>{{ data.winner.teamColor }}: {{ data.winner.score }}</h4>
+            <h4>{{ data.loser.teamColor }}: {{ data.loser.score }}</h4>
+        </div>
+    </div>
+</div>
+<ng-template #draw>
+    <h2>It was a draw!</h2>
+    <div mat-dialog-content>
+        <h3>Final Score:</h3>
+        <div>
+            <h4>{{ data.winner.teamColor }}: {{ data.winner.score }}</h4>
+            <h4>{{ data.loser.teamColor }}: {{ data.loser.score }}</h4>
+        </div>
+    </div>
+</ng-template>
+<div mat-dialog-actions>
+  <button class="btn btn-blue" mat-dialog-close cdkFocusInitial>Back to Player Entry</button>
+</div>

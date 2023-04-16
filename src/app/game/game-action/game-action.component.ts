@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { GameService } from '../game.service';
 import { GameStore, Team } from '../game.store';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { ResultsDialogComponent } from './results-dialog/results-dialog.component';
 
 @Component({
   selector: 'app-game-action',
@@ -23,13 +25,17 @@ export class GameActionComponent implements OnInit {
   music: Array<String> = ["Track01.mp3","Track02.mp3","Track03.mp3","Track04.mp3","Track05.mp3","Track06.mp3","Track07.mp3","Track08.mp3"];
   audio = new Audio();
 
-  constructor(private readonly store: GameStore, private readonly gameService: GameService, private readonly router: Router) { }
+  constructor(
+    private readonly store: GameStore, 
+    private readonly gameService: GameService, 
+    private readonly router: Router,
+    private readonly dialog: MatDialog
+    ) { }
 
   ngOnInit(): void {
     this.store.teamList$.subscribe((teamList) => {
       this.redTeam = teamList.find(team => team.teamColor === 'Red')!;
       this.blueTeam = teamList.find(team => team.teamColor === 'Blue')!;
-      console.log(teamList);
     });
 
     this.gameService.openSseChannel();
@@ -49,12 +55,31 @@ export class GameActionComponent implements OnInit {
     this.ended = true;
     this.store.addScoreUpdate(false);
     this.musicStop();
-    if(this.redTeam.score > this.blueTeam.score)
-      this.redWinOutcome = true;
-    else if(this.redTeam.score < this.blueTeam.score)
-      this.blueWinOutcome = true;
-    else
-      this.tieOutcome = true;
+
+    if (this.redTeam.score > this.blueTeam.score) {
+      const dialogRef = this.dialog.open(ResultsDialogComponent, {data: {winner: this.redTeam, loser: this.blueTeam, draw: false}});
+
+      dialogRef.afterClosed().subscribe(() => {
+        this.router.navigate(['/player-entry']);
+        this.store.resetGame();
+      });
+    } else if (this.blueTeam.score > this.redTeam.score) {
+      const dialogRef = this.dialog.open(ResultsDialogComponent, {data: {winner: this.redTeam, loser: this.blueTeam, draw: false}});
+
+      dialogRef.afterClosed().subscribe(() => {
+        this.router.navigate(['/player-entry']);
+        this.store.resetGame();
+      });
+    } else {
+      const dialogRef = this.dialog.open(ResultsDialogComponent, {data: {winner: this.redTeam, loser: this.blueTeam, draw: true}});
+
+      dialogRef.afterClosed().subscribe(() => {
+        this.router.navigate(['/player-entry']);
+        this.store.resetGame();
+      });
+    }
+
+
   }
 
   newGameAction() {
