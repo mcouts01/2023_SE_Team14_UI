@@ -3,6 +3,14 @@
     display: flex;
     flex-direction: column;
 
+    .red {
+        color: #FF3B3B
+    }
+
+    .blue {
+        color: #6079FF
+    }
+
     .header {
         width: 100%;
         padding: 0.5rem 0;

@@ -36,6 +36,7 @@ export interface ScoreDisplay {
 export interface GameState {
   teamList: Team[];
   scoreList: ScoreDisplay[];
+  scoreUpdate: boolean;
 }
 
 @Injectable(
@@ -49,13 +50,16 @@ export class GameStore extends ComponentStore<GameState> {
 
     scoreList$ = this.select(state => state.scoreList);
 
+    scoreUpdate$ = this.select(state => state.scoreUpdate);
+
     constructor() {
         super({ 
           teamList: [
             {teamColor: 'Red', playerList: [], score: 0},
             {teamColor: 'Blue', playerList: [], score: 0}
           ],
-          scoreList: []
+          scoreList: [],
+          scoreUpdate: false
         });
     }
 
@@ -64,7 +68,8 @@ export class GameStore extends ComponentStore<GameState> {
         {teamColor: 'Red', playerList: [], score: 0},
         {teamColor: 'Blue', playerList: [], score: 0}
       ],
-      scoreList: []
+      scoreList: [],
+      scoreUpdate: false
     }));
 
     public addTeam = this.updater((state, value: Team) => ({
@@ -77,33 +82,38 @@ export class GameStore extends ComponentStore<GameState> {
         teamList: [...state.teamList.filter(team => team.teamColor !== value.teamColor), value]
     }));
 
+    public addScoreUpdate = this.updater((state, value: boolean) => ({
+      ...state,
+      scoreUpdate: value
+    }));
+
     public onScore = this.effect((source: Observable<Score>) => source.pipe(
-      combineLatestWith(this.teamList$),
-      tapResponse(([score, teamList]) => {
+      combineLatestWith(this.teamList$,this.scoreUpdate$),
+      tapResponse(([score, teamList, scoreUpdate]) => {
         let playerList: Player[] = [];
         teamList.forEach((team) => {
           playerList = playerList.concat(team.playerList);
         });
+        if(scoreUpdate) {
+          let hit: Player | null = null;
+          let hitter: Player | null = null;
 
-        let hit: Player | null = null;
-        let hitter: Player | null = null;
-
-        playerList.forEach((player) => {
-          if(player.id === score.hitterId) {
-            hitter = player;
-            player.score += this.SCORE_INCREMENT;
-          } else if(player.id === score.hitId) {
-            hit = player;
-          }
-        });
-
-        if(hit !== null && hitter !== null) {
-          this.addScore({
-            hit: hit,
-            hitter: hitter
+          playerList.forEach((player) => {
+            if(player.id === score.hitterId) {
+              hitter = player;
+              player.score += this.SCORE_INCREMENT;
+            } else if(player.id === score.hitId) {
+              hit = player;
+            }
           });
+
+          if(hit !== null && hitter !== null) {
+            this.addScore({
+              hit: hit,
+              hitter: hitter
+            });
+          }
         }
-        
       }, () => {})
     ));
 
